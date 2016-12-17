@@ -27,9 +27,4 @@
 ##
 ############################################################################
 
-do_deploy_append() {
-    if [ "${RPI_FT5406}" = "1" ]; then
-        echo "# Enable rpi-ft5406 touch" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-        echo "dtoverlay=rpi-ft5406" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-    fi
-}
+RDEPENDS_libgles2-mesa-dev += "libgles3-mesa-dev"
