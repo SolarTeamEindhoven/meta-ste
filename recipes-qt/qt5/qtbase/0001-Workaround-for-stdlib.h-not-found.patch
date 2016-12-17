@@ -1,0 +1,24 @@
+From eb68008e1ff30f341f855b0f993f1abc634dd294 Mon Sep 17 00:00:00 2001
+From: Steven van der Schoot <steven.vanderschoot@solarteameindhoven.nl>
+Date: Wed, 14 Dec 2016 00:57:03 +0100
+Subject: [PATCH] Workaround for stdlib.h not found
+
+---
+ src/corelib/global/qglobal.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/corelib/global/qglobal.h b/src/corelib/global/qglobal.h
+index 1737f58..43f11a5 100644
+--- a/src/corelib/global/qglobal.h
++++ b/src/corelib/global/qglobal.h
+@@ -105,6 +105,7 @@
+ 
+ #ifdef __cplusplus
+ 
++#include <cstdlib>
+ #include <algorithm>
+ 
+ #if !defined(QT_NAMESPACE) || defined(Q_MOC_RUN) /* user namespace */
+-- 
+2.5.5
+

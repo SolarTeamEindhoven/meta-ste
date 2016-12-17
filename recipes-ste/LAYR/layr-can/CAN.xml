@@ -1,0 +1,662 @@
+<protocol>
+	<customtypes>
+		<type name="HVState_State" kind="enum" size="8">
+			<element name="InitialStartup" value="0" />
+			<element name="Initialize" />
+			<element name="Synchronize" />
+			<element name="StandBy" />
+			<element name="Charge" />
+			<element name="PreCharge" />
+			<element name="Drive" />
+			<element name="UserProgram" />
+			<element name="Error" />
+			<element name="Balance" />
+		</type>
+		<type name="CCState_State" kind="enum" size="8">
+			<element name="NO_CC" value="0" />
+			<element name="STC_CC" />
+			<element name="MK5_CC" />
+		</type>
+		<type name="NavigationDirection_State" kind="enum" size="32">
+			<element name="InitialStartup" value="0" />
+			<element name="Initialize" />
+			<element name="Synchronize" />
+			<element name="StandBy" />
+			<element name="Charge" />
+			<element name="PreCharge" />
+			<element name="Drive" />
+			<element name="UserProgram" />
+			<element name="Error" />
+			<element name="Balance" />
+		</type>
+		<type name="LVStatus_Main" kind="enum" size="8">
+			<element name="Initializing" value="0" />
+			<element name="SleepDemo" />
+			<element name="SleepBMCM" />
+			<element name="Error" />
+			<element name="PowerUpBMS" />
+			<element name="PowerUpPrimaryLV" />
+			<element name="PowerUpPrimaryLVDelay" />
+			<element name="PrimaryLVStable" />
+			<element name="PowerUpBareMinimum" />
+			<element name="TripleConvDelay" />
+			<element name="TripleConv" />
+			<element name="DoubleConvDelay" />
+			<element name="DoubleConv" />
+			<element name="SingleConvDelay" />
+			<element name="SingleConv" />
+			<element name="TripleConvHotDelay" />
+			<element name="TripleConvHot" />
+			<element name="DoubleConvHotDelay" />
+			<element name="DoubleConvHot" />
+			<element name="PowerOnlyBMS" />
+			<element name="LVVoltageCheck" />
+			<element name="Authenticating" />
+			<element name="HVStartUpDelay" />
+		</type>
+		<type name="LVStatus_STBMonitoring" kind="enum" size="8">
+			<element name="STB_NONE" value="0" />
+			<element name="UVPresent" />
+			<element name="Sleep" />
+			<element name="STBVOK" />
+			<element name="STBVNotOK" />
+		</type>
+		<type name="LVStatus_OnOffMonitoring" kind="enum" size="8">
+			<element name="ONOFF_NONE" value="0" />
+			<element name="WaitForShutDown" />
+			<element name="SpeedCheck" />
+			<element name="WaitForRelease" />
+			<element name="WaitForStartUp" />
+			<element name="AllowDriving" />
+			<element name="Driving" />
+			<element name="Stopped" />
+			<element name="LvOnStandBy" />
+		</type>
+		<type name="LVStatus_BLEAuth" kind="enum" size="8">
+			<element name="BLE_NONE" value="0" />
+			<element name="NoBLE" />
+			<element name="TODO" />
+		</type>
+		<type name="LVStatus_CANMonitoring" kind="enum" size="8">
+			<element name="CAN_NONE" value="0" />
+			<element name="NoMonitoring" />
+			<element name="Delay" />
+			<element name="Monitoring" />
+		</type>
+		<type name="CarMode_CarMode" kind="enum" size="8">
+			<element name="BareMinimum" value="0" />
+			<element name="Challenge" />
+			<element name="Demo" />
+		</type>
+		<type name="AuthenticationStatus_BLEAuthState" kind="enum" size="8">
+			<element name="Off" value="0" />
+			<element name="Connect" />
+			<element name="Advertising" />
+			<element name="WaitForTxPipe" />
+			<element name="SendChallenge" />
+			<element name="Authenticated" />
+			<element name="Disconnect" />
+		</type>
+		<type name="DNRSensor_DNRState" kind="enum" size="8">
+			<element name="Neutral" value="0" />
+			<element name="Drive" value="1" />
+			<element name="Reverse" value="2" />
+			<element name="Park" value="3" />
+		</type>
+		<type name="WiperInfo_WiperMode" kind="enum" size="8">
+			<element name="Invalid" value="0" />
+			<element name="Off" />
+			<element name="Speed1" />
+			<element name="Speed2" />
+			<element name="Speed3" />
+			<element name="Speed4" />
+		</type>
+		<type name="LightingStatus_Mode" kind="enum" size="8">
+			<element name="Off" value="0" />
+			<element name="CityParking" />
+			<element name="LowBeam" />
+			<element name="HighBeam" />
+			<element name="Fog" />
+		</type>
+	</customtypes>
+	<CAN>
+		<message id="0" name="TimeSync" period="1000000" description="">
+			<field type="uint32_t" name="unixtimestamp" />
+			<field type="uint16_t" name="microtime" />
+		</message>
+		<message id="100" name="HVState" period="10000" description="">
+			<field type="bool" name="HVenabled" />
+			<field type="HVState_State" name="State" size="8" />
+		</message>
+		<message id="101" name="StateOfCharge" period="10000" description="">
+			<field type="float" name="SoC" />
+		</message>
+		<message id="102" name="MinMaxCellInfo" period="10000" description="">
+			<field type="uint16_t" name="MinCellVoltage" />
+			<field type="uint16_t" name="MaxCellVoltage" />
+			<field type="uint8_t" name="MinCellVoltageNr" />
+			<field type="uint8_t" name="MaxCellVoltageNr" />
+		</message>
+		<message id="103" name="BatteryPower" period="100000" description="">
+			<field type="int32_t" name="BatteryPower" />
+		</message>
+		<message id="104" name="BatteryCurrentCounter" period="100000" description="">
+			<field type="int32_t" name="BatteryCurrentCounter" />
+		</message>
+		<message id="105" name="BatteryEnergyCounter" period="100000" description="">
+			<field type="int32_t" name="BatteryEnergyCounter" />
+			<field type="uint8_t" name="index" />
+		</message>
+		<message id="200" name="BrakePedal" period="10000" description="">
+			<field type="float" name="value" />
+			<field type="float" name="valueRedundant" />
+		</message>
+		<message id="201" name="CCState" period="200000" description="">
+			<field type="CCState_State" name="state" size="8" />
+			<field type="float" name="velocity" />
+			<field type="uint8_t" name="StCID" />
+			<field type="uint8_t" name="MK5ID" />
+		</message>
+		<message id="300" name="CCRequest" period="200000" description="">
+			<field type="bool" name="active" />
+			<field type="float" name="speed" />
+			<field type="uint16_t" name="requestID" />
+		</message>
+		<message id="360" name="CCRequestMK5" period="200000" description="">
+			<field type="bool" name="active" />
+			<field type="float" name="speed" />
+			<field type="uint16_t" name="requestID" />
+		</message>
+		<message id="370" name="GPSLocation" period="500000" description="">
+			<field type="float" name="lat" />
+			<field type="float" name="lon" />
+		</message>
+		<message id="371" name="GPSMetaData" period="500000" description="">
+			<field type="float" name="altitude" />
+			<field type="uint16_t" name="speed" />
+			<field type="uint16_t" name="heading" />
+		</message>
+		<message id="504" name="DriverDoor" period="200000" description="">
+			<field type="bool" name="DriverDoorIsOpen" />
+		</message>
+		<message id="506" name="Handbrake" period="200000" description="">
+			<field type="bool" name="HandBrakeIsActive" />
+		</message>
+		<message id="510" name="HeaterOn" period="200000" description="">
+			<field type="bool" name="turnHeaterOn" />
+		</message>
+		<message id="520" name="MPPTPowerLevels" period="200000" description="">
+			<field type="uint8_t" name="PowerLevelMPPT1" />
+			<field type="uint8_t" name="PowerLevelMPPT2" />
+			<field type="uint8_t" name="PowerLevelMPPT3" />
+		</message>
+		<message id="540" name="NavigationDirection" period="200000" description="">
+			<field type="NavigationDirection_State" name="direction" size="32" />
+			<field type="uint32_t" name="distance" />
+		</message>
+		<message id="541" name="NavigationEndDistance" period="200000" description="">
+			<field type="uint32_t" name="distance" />
+		</message>
+		<message id="550" name="HazardLight" period="200000" description="">
+			<field type="bool" name="active" />
+		</message>
+		<message id="600" name="TemperatureSensor" period="200000" description="">
+			<field type="uint32_t" name="tempKelvin" />
+			<field type="int32_t" name="tempCelcius" />
+		</message>
+		<message id="601" name="DoorSensor" period="200000" description="RDW 1.2.3.4">
+			<field type="int32_t" name="degreeOpen" />
+		</message>
+		<message id="603" name="JoyUpSensor" period="200000" description="">
+			<field type="bool" name="JoyUp" />
+			<field type="bool" name="JoyDown" />
+			<field type="bool" name="JoyLeft" />
+			<field type="bool" name="JoyRight" />
+		</message>
+		<message id="1000" name="BatteryCurrentVoltage" period="100000" description="">
+			<field type="int16_t" name="BatteryCurrent" />
+			<field type="int16_t" name="BatteryVoltage" />
+		</message>
+		<message id="1001" name="BatteryCurrentVoltageHP" period="100000" description="">
+			<field type="int32_t" name="BatteryCurrentHP" />
+			<field type="int32_t" name="BatteryVoltageHP" />
+		</message>
+		<message id="1002" name="CurrentCharge" period="1000000" description="">
+			<field type="uint32_t" name="CurrentCharge" />
+		</message>
+		<message id="1003" name="MaxTempBuckets" period="1000000" description="">
+			<field type="uint8_t" name="MaxTempBucket1" />
+			<field type="uint8_t" name="MaxTempBucket2" />
+			<field type="uint8_t" name="MaxTempBucket3" />
+			<field type="uint8_t" name="MaxTempBucket4" />
+			<field type="uint8_t" name="MaxTempBucket5" />
+			<field type="uint8_t" name="MaxTempBucket6" />
+		</message>
+		<message id="1004" name="ErrorFIDBMS" period="1000000" description="">
+			<field type="uint16_t" name="ErrorFIDBMS" />
+			<field type="uint16_t" name="ErrorFIDSlaveBMS" />
+		</message>
+		<message id="1005" name="StateOfHealth" period="1000000" description="">
+			<field type="float" name="SoH" />
+		</message>
+		<message id="1006" name="StatusLEDsRelays" period="10000" description="">
+			<field type="bool" name="StatusLedsRelaysBMS_OkErrorLEDGR" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_OkErrorLEDRED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_PrechargeLEDGR" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_PrechargeLEDRED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_DischargeLEDGR" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_DischargeLEDRED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_HVPlusLEDGR" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_HVPlusLEDRED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_HVMinLEDGR" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_HVMinLEDRED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_IMDLED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_BMSLED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_HVPrechargeRelay" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_HVPlusRelay" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_HVMinRelay" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMS_HVDischargeRelay" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_OkErrorLEDGR" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_OkErrorLEDRED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_PrechargeLEDGR" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_PrechargeLEDRED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_DischargeLEDGR" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_DischargeLEDRED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_HVPlusLEDGR" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_HVPlusLEDRED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_HVMinLEDGR" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_HVMinLEDRED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_IMDLED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_BMSLED" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_HVPrechargeRelay" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_HVPlusRelay" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_HVMinRelay" size="1" />
+			<field type="bool" name="StatusLedsRelaysBMSSlave_HVDischargeRelay" size="1" />
+		</message>
+		<message id="1100" name="LVStatus" period="1000000" description="">
+			<field type="LVStatus_Main" name="Main" size="8" />
+			<field type="LVStatus_STBMonitoring" name="STBMonitoring" size="8" />
+			<field type="LVStatus_OnOffMonitoring" name="OnOffMonitoring" size="8" />
+			<field type="LVStatus_BLEAuth" name="BLEAuth" size="8" />
+			<field type="LVStatus_CANMonitoring" name="CANMonitoring" size="8" />
+			<field type="bool" name="Error_HVUnderVoltage" size="1" />
+			<field type="bool" name="Error_LVPowerUsage" size="1" />
+			<field type="bool" name="Error_LVTemp" size="1" />
+			<field type="bool" name="Error_LVUnderVoltage" size="1" />
+			<field type="bool" name="Error_BLEUnableToStart" size="1" />
+			<field name="Reserved" size="3" />
+		</message>
+		<message id="1101" name="CarMode" period="100000" description="">
+			<field type="CarMode_CarMode" name="mode" size="8" />
+		</message>
+		<message id="1102" name="IMDStatus" period="333333" description="">
+			<field type="uint32_t" name="frequencyHz" />
+			<field type="uint32_t" name="usHighDuringPeriod" />
+		</message>
+		<message id="1103" name="HVCurrentLV" period="2000" description="">
+			<field type="float" name="current" />
+		</message>
+		<message id="1104" name="HVUnderVoltage" period="33333" description="">
+			<field type="bool" name="HVInBoundaries" />
+		</message>
+		<message id="1105" name="CarOnOffStatus" period="100000" description="">
+			<field type="bool" name="ButtonPressed" />
+			<field type="bool" name="carTurnedOn" />
+		</message>
+		<message id="1106" name="StandbyPSUVoltage" period="100000" description="">
+			<field type="float" name="voltage" />
+		</message>
+		<message id="1107" name="StandbyPSUCurrent" period="100000" description="">
+			<field type="float" name="current" />
+		</message>
+		<message id="1108" name="LVConverterTemp" period="25000" description="">
+			<field type="float" name="temp" />
+		</message>
+		<message id="1109" name="LVVoltage" period="2000" description="">
+			<field type="float" name="voltage" />
+		</message>
+		<message id="1110" name="CabinTemp" period="25000" description="">
+			<field type="float" name="temp" />
+		</message>
+		<message id="1111" name="AuthenticationStatus" period="100000" description="">
+			<field type="bool" name="Authenticated" />
+			<field type="AuthenticationStatus_BLEAuthState" name="BLEOn" size="8" />
+		</message>
+		<message id="1115" name="ConvCount" period="1000000" description="">
+			<field type="uint8_t" name="convsEnabled" />
+		</message>
+		<message id="1124" name="EnergyCounterStored" period="50000" description="">
+			<field type="int32_t" name="BatteryEnergyCounter" />
+			<field type="uint8_t" name="index" />
+		</message>
+		<message id="1200" name="GasPedal" period="10000" description="">
+			<field type="float" name="value" />
+			<field type="float" name="valueRedundant" />
+		</message>
+		<message id="1201" name="DNRSensor" period="10010" description="">
+			<field type="DNRSensor_DNRState" name="state" size="8" />
+		</message>
+		<message id="1202" name="VelocityMeasurementL" period="200000" description="">
+			<field type="float" name="MotorVelocity" />
+			<field type="float" name="VehicleVelocity" />
+		</message>
+		<message id="1203" name="VelocityMeasurementR" period="200000" description="">
+			<field type="float" name="MotorVelocity" />
+			<field type="float" name="VehicleVelocity" />
+		</message>
+		<message id="1204" name="StatusInfoL" period="200000" description="">
+			<field type="uint8_t" name="LimitFlags_Reserved" size="8" />
+			<field type="bool" name="LimitFlags_Reserved2" size="1" />
+			<field type="bool" name="LimitFlags_IPMMotorTemp" size="1" />
+			<field type="bool" name="LimitFlags_BVLL" size="1" />
+			<field type="bool" name="LimitFlags_BVUL" size="1" />
+			<field type="bool" name="LimitFlags_BusCurrent" size="1" />
+			<field type="bool" name="LimitFlags_Velocity" size="1" />
+			<field type="bool" name="LimitFlags_MotorCurrent" size="1" />
+			<field type="bool" name="LimitFlags_OutputVoltagePWM" size="1" />
+			<field type="uint8_t" name="ErrorFlags_Reserved" size="8" />
+			<field type="bool" name="ErrorFlags_DesaturationFault" size="1" />
+			<field type="bool" name="ErrorFlags_UVLO" size="1" />
+			<field type="bool" name="ErrorFlags_ConfigReadError" size="1" />
+			<field type="bool" name="ErrorFlags_WatchdogReset" size="1" />
+			<field type="bool" name="ErrorFlags_BadMotorPosition" size="1" />
+			<field type="bool" name="ErrorFlags_DCBusOV" size="1" />
+			<field type="bool" name="ErrorFlags_SoftwareOC" size="1" />
+			<field type="bool" name="ErrorFlags_HardwareOC" size="1" />
+			<field type="uint16_t" name="ActiveMotor" />
+			<field type="uint8_t" name="TransmitErrCount" />
+			<field type="uint8_t" name="ReceiveErrCount" />
+		</message>
+		<message id="1205" name="StatusInfoR" period="200000" description="">
+			<field type="uint8_t" name="LimitFlags_Reserved" size="8" />
+			<field type="bool" name="LimitFlags_Reserved2" size="1" />
+			<field type="bool" name="LimitFlags_IPMMotorTemp" size="1" />
+			<field type="bool" name="LimitFlags_BVLL" size="1" />
+			<field type="bool" name="LimitFlags_BVUL" size="1" />
+			<field type="bool" name="LimitFlags_BusCurrent" size="1" />
+			<field type="bool" name="LimitFlags_Velocity" size="1" />
+			<field type="bool" name="LimitFlags_MotorCurrent" size="1" />
+			<field type="bool" name="LimitFlags_OutputVoltagePWM" size="1" />
+			<field type="uint8_t" name="ErrorFlags_Reserved" size="8" />
+			<field type="bool" name="ErrorFlags_DesaturationFault" size="1" />
+			<field type="bool" name="ErrorFlags_UVLO" size="1" />
+			<field type="bool" name="ErrorFlags_ConfigReadError" size="1" />
+			<field type="bool" name="ErrorFlags_WatchdogReset" size="1" />
+			<field type="bool" name="ErrorFlags_BadMotorPosition" size="1" />
+			<field type="bool" name="ErrorFlags_DCBusOV" size="1" />
+			<field type="bool" name="ErrorFlags_SoftwareOC" size="1" />
+			<field type="bool" name="ErrorFlags_HardwareOC" size="1" />
+			<field type="uint16_t" name="ActiveMotor" />
+			<field type="uint8_t" name="TransmitErrCount" />
+			<field type="uint8_t" name="ReceiveErrCount" />
+		</message>
+		<message id="1206" name="MotorBusMeasurementL" period="200000" description="">
+			<field type="float" name="BusVoltage" />
+			<field type="float" name="BusCurrent" />
+		</message>
+		<message id="1207" name="MotorBusMeasurementR" period="200000" description="">
+			<field type="float" name="BusVoltage" />
+			<field type="float" name="BusCurrent" />
+		</message>
+		<message id="1208" name="MotorPhaseCurrentMeasurementL" period="200000" description="">
+			<field type="float" name="PhaseBCurrent" />
+			<field type="float" name="PhaseCCurrent" />
+		</message>
+		<message id="1209" name="MotorPhaseCurrentMeasurementR" period="200000" description="">
+			<field type="float" name="PhaseBCurrent" />
+			<field type="float" name="PhaseCCurrent" />
+		</message>
+		<message id="1210" name="MotorVoltageVectorMeasurementL" period="200000" description="">
+			<field type="float" name="Vq" />
+			<field type="float" name="Vd" />
+		</message>
+		<message id="1211" name="MotorVoltageVectorMeasurementR" period="200000" description="">
+			<field type="float" name="Vq" />
+			<field type="float" name="Vd" />
+		</message>
+		<message id="1212" name="MotorCurrentVectorMeasurementL" period="200000" description="">
+			<field type="float" name="Iq" />
+			<field type="float" name="Id" />
+		</message>
+		<message id="1213" name="MotorCurrentVectorMeasurementR" period="200000" description="">
+			<field type="float" name="Iq" />
+			<field type="float" name="Id" />
+		</message>
+		<message id="1214" name="MotorBackEMFL" period="200000" description="">
+			<field type="float" name="BEMFq" />
+			<field type="float" name="BEMFd" />
+		</message>
+		<message id="1215" name="MotorBackEMFR" period="200000" description="">
+			<field type="float" name="BEMFq" />
+			<field type="float" name="BEMFd" />
+		</message>
+		<message id="1216" name="Motor15VoltageRailMeasurementL" period="1000000" description="">
+			<field type="float" name="Reserved" />
+			<field type="float" name="V15Supply" />
+		</message>
+		<message id="1217" name="Motor15VoltageRailMeasurementR" period="1000000" description="">
+			<field type="float" name="Reserved" />
+			<field type="float" name="V15Supply" />
+		</message>
+		<message id="1218" name="MotorVoltageRailMeasurementL" period="1000000" description="">
+			<field type="float" name="V19Supply" />
+			<field type="float" name="V33Supply" />
+		</message>
+		<message id="1219" name="MotorVoltageRailMeasurementR" period="1000000" description="">
+			<field type="float" name="V19Supply" />
+			<field type="float" name="V33Supply" />
+		</message>
+		<message id="1220" name="MotorTemperatureMeasurementL" period="1000000" description="">
+			<field type="float" name="MotorTemp" />
+			<field type="float" name="IPMHeatSinkTemp" />
+		</message>
+		<message id="1221" name="MotorTemperatureMeasurementR" period="1000000" description="">
+			<field type="float" name="MotorTemp" />
+			<field type="float" name="IPMHeatSinkTemp" />
+		</message>
+		<message id="1222" name="MotorDSPBoardMeasurementL" period="1000000" description="">
+			<field type="float" name="DSPBoardTemp" />
+			<field type="float" name="Reserved" />
+		</message>
+		<message id="1223" name="MotorDSPBoardMeasurementR" period="1000000" description="">
+			<field type="float" name="DSPBoardTemp" />
+			<field type="float" name="Reserved" />
+		</message>
+		<message id="1224" name="MotorOdometerL" period="1000000" description="">
+			<field type="float" name="Odometer" />
+			<field type="float" name="DCBusAmpHours" />
+		</message>
+		<message id="1225" name="MotorOdometerR" period="1000000" description="">
+			<field type="float" name="Odometer" />
+			<field type="float" name="DCBusAmpHours" />
+		</message>
+		<message id="1226" name="MCUState" period="50000" description="">
+			<field type="uint8_t" name="State" />
+		</message>
+		<message id="1227" name="RegenBrake" period="10000" description="">
+			<field type="float" name="percentageActive" />
+		</message>
+		<message id="1228" name="MotorPowerLeft" period="1000000" description="">
+			<field type="uint32_t" name="Reserved" />
+			<field type="float" name="busCurrent" />
+		</message>
+		<message id="1229" name="MotorPowerRight" period="1000000" description="">
+			<field type="uint32_t" name="Reserved" />
+			<field type="float" name="busCurrent" />
+		</message>
+		<message id="1230" name="MotorDriveLeft" period="10000" description="">
+			<field type="float" name="velocity" />
+			<field type="float" name="current" />
+		</message>
+		<message id="1231" name="MotorDriveRight" period="10000" description="">
+			<field type="float" name="velocity" />
+			<field type="float" name="current" />
+		</message>
+		<message id="1232" name="SetRegenBraking" period="1000000" description="">
+			<field type="bool" name="enableRegenBraking" />
+		</message>
+		<message id="1300" name="EMSwitchSLC" period="500000" description="">
+			<field type="bool" name="EMSwitchActivated" />
+		</message>
+		<message id="1310" name="InputMPPT1" period="500000" description="">
+			<field type="float" name="CurrentIn" />
+			<field type="float" name="VoltageIn" />
+		</message>
+		<message id="1311" name="InputMPPT2" period="500000" description="">
+			<field type="float" name="CurrentIn" />
+			<field type="float" name="VoltageIn" />
+		</message>
+		<message id="1312" name="InputMPPT3" period="500000" description="">
+			<field type="float" name="CurrentIn" />
+			<field type="float" name="VoltageIn" />
+		</message>
+		<message id="1313" name="PowerMPPT1" period="500000" description="">
+			<field type="float" name="VoltageOut" />
+			<field type="float" name="PowerIn" />
+		</message>
+		<message id="1314" name="PowerMPPT2" period="500000" description="">
+			<field type="float" name="VoltageOut" />
+			<field type="float" name="PowerIn" />
+		</message>
+		<message id="1315" name="PowerMPPT3" period="500000" description="">
+			<field type="float" name="VoltageOut" />
+			<field type="float" name="PowerIn" />
+		</message>
+		<message id="1316" name="OutputCurrentMPPTs" period="500000" description="">
+			<field type="uint16_t" name="OutputCurrentMPPT1" />
+			<field type="uint16_t" name="OutputCurrentMPPT2" />
+			<field type="uint16_t" name="OutputCurrentMPPT3" />
+		</message>
+		<message id="1400" name="ApplyHorn" period="20000" description="">
+			<field type="bool" name="applyHorn" />
+		</message>
+		<message id="1401" name="WiperInfo" period="20000" description="">
+			<field type="bool" name="buttonPressed" />
+			<field type="WiperInfo_WiperMode" name="wiperMode" size="8" />
+		</message>
+		<message id="1402" name="VolumeKnob" period="100000" description="">
+			<field type="int8_t" name="ticksUp" />
+			<field type="uint8_t" name="index" />
+		</message>
+		<message id="1404" name="LightingStatus" period="20000" description="">
+			<field type="bool" name="flashHighBeam" />
+			<field type="LightingStatus_Mode" name="mode" size="8" />
+		</message>
+		<message id="1405" name="IndicatorStatus" period="20000" description="">
+			<field type="bool" name="rightOn" />
+			<field type="bool" name="leftOn" />
+		</message>
+		<message id="1406" name="CCRaw" period="200000" description="">
+			<field type="int8_t" name="ticks" />
+			<field type="bool" name="set" />
+			<field type="bool" name="reset" />
+			<field type="uint8_t" name="alternateFlag" />
+		</message>
+		<message id="1600" name="LightsWorkingFrontLeft" period="200000" description="">
+			<field type="bool" name="WorkingStatus_turnIndicator" size="1" />
+			<field type="bool" name="WorkingStatus_lowBeam" size="1" />
+			<field name="Reserved" size="6" />
+		</message>
+		<message id="1650" name="LightsWorkingFrontRight" period="200000" description="">
+			<field type="bool" name="WorkingStatus_turnIndicator" size="1" />
+			<field type="bool" name="WorkingStatus_lowBeam" size="1" />
+			<field name="Reserved" size="6" />
+		</message>
+		<message id="1700" name="LightsWorkingRearLeft" period="200000" description="">
+			<field type="bool" name="WorkingStatus_turnIndicatorsWorking" size="1" />
+			<field type="bool" name="WorkingStatus_brakeLightsWorking" size="1" />
+			<field type="bool" name="WorkingStatus_indicatorsWorkingSinceStartUp" size="1" />
+			<field type="bool" name="WorkingStatus_brakeLightsWorkingSinceStartUp" size="1" />
+			<field type="bool" name="WorkingStatus_filteredIndicatorsWorking" size="1" />
+			<field type="bool" name="WorkingStatus_filteredBrakeLightsWorking" size="1" />
+			<field name="Reserved" size="2" />
+		</message>
+		<message id="1750" name="LightsWorkingRearRight" period="200000" description="">
+			<field type="bool" name="WorkingStatus_turnIndicatorsWorking" size="1" />
+			<field type="bool" name="WorkingStatus_brakeLightsWorking" size="1" />
+			<field type="bool" name="WorkingStatus_indicatorsWorkingSinceStartUp" size="1" />
+			<field type="bool" name="WorkingStatus_brakeLightsWorkingSinceStartUp" size="1" />
+			<field type="bool" name="WorkingStatus_filteredIndicatorsWorking" size="1" />
+			<field type="bool" name="WorkingStatus_filteredBrakeLightsWorking" size="1" />
+			<field name="Reserved" size="2" />
+		</message>
+		<message id="1810" name="BrakeLiquidLow" period="200000" description="">
+			<field type="bool" name="brakeLiquidIsLow" />
+		</message>
+		<message id="1820" name="MoodLights" period="100000" description="">
+			<field type="uint8_t" name="red" />
+			<field type="uint8_t" name="green" />
+			<field type="uint8_t" name="blue" />
+		</message>
+		<message id="1840" name="EnableWDC" period="20000" description="">
+			<field type="bool" name="enable" />
+		</message>
+		<message id="1950" name="HVJuncTemp" period="1000000" description="">
+			<field type="float" name="tempCelsius" />
+		</message>
+		<message id="1951" name="HeaterTemp" period="1000000" description="">
+			<field type="float" name="tempCelsius" />
+		</message>
+		<message id="2000" name="CANError" period="1000000000" description="">
+			<field type="uint8_t" name="ErrorType" />
+		</message>
+		<message id="2001" name="EmergencyState" period="1000000" description="">
+			<field type="bool" name="inEmergencyState" />
+		</message>
+		<message id="2002" name="BLESensor" period="1000000000" description="">
+			<field type="bool" name="authenticated" />
+		</message>
+		<message id="2003" name="TimeoutSensor" period="1000000000" description="">
+			<field type="bool" name="ignoreMe" />
+		</message>
+		<message id="1450" name="HeatsinkTemp" period="200000" description="">
+			<field type="float" name="tempCelsius" />
+		</message>
+		<message id="1451" name="InductorTemp" period="200000" description="">
+			<field type="float" name="tempCelsius" />
+		</message>
+		<message id="1452" name="PCBTemp" period="200000" description="">
+			<field type="float" name="tempCelsius" />
+		</message>
+		<message id="1453" name="SpareTemp" period="200000" description="">
+			<field type="float" name="tempCelsius" />
+		</message>
+		<message id="1454" name="DischargeFreq" period="50000" description="">
+			<field type="float" name="freqHz" />
+		</message>
+		<message id="1455" name="DischargeCurrent" period="20000" description="">
+			<field type="float" name="current" />
+		</message>
+		<message id="1456" name="DischargeStatus" period="20000" description="">
+		</message>
+		<message id="2004" name="EnableLVCFan" period="1000000000" description="">
+			<field type="bool" name="enableFan" />
+		</message>
+		<message id="2200" name="StrategyGPSLocation" period="500000" description="">
+			<field type="float" name="lat" />
+			<field type="float" name="lon" />
+		</message>
+		<message id="2201" name="StrategyGPSMetaData" period="500000" description="">
+			<field type="float" name="altitude" />
+			<field type="uint16_t" name="speed" />
+			<field type="uint16_t" name="heading" />
+		</message>
+		<message id="2203" name="TechnicalGPSLocation" period="500000" description="">
+			<field type="float" name="lat" />
+			<field type="float" name="lon" />
+		</message>
+		<message id="2204" name="TechnicalGPSMetaData" period="500000" description="">
+			<field type="float" name="altitude" />
+			<field type="uint16_t" name="speed" />
+			<field type="uint16_t" name="heading" />
+		</message>
+	</CAN>
+	<datafields>
+		<datafield name="time">
+			<sum>
+				<value message="TimeSync" field="unixtimestamp" type="double" />
+				<value message="TimeSync" field="microtime" type="double" scalar="1/65536" />
+			</sum>
+		</datafield>
+	</datafields>
+</protocol>

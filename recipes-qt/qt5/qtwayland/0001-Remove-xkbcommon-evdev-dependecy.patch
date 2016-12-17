@@ -1,0 +1,68 @@
+From 1b623f3373bc77d141205776601dd7d6010e573d Mon Sep 17 00:00:00 2001
+From: Steven van der Schoot <steven.vanderschoot@solarteameindhoven.nl>
+Date: Wed, 14 Dec 2016 22:29:55 +0100
+Subject: [PATCH] Remove xkbcommon-evdev dependecy
+
+---
+ src/client/client.pro                                | 3 ---
+ src/compositor/wayland_wrapper/wayland_wrapper.pri   | 3 ---
+ src/plugins/shellintegration/ivi-shell/ivi-shell.pro | 3 ---
+ tests/auto/compositor/compositor/compositor.pro      | 3 ---
+ 4 files changed, 12 deletions(-)
+
+diff --git a/src/client/client.pro b/src/client/client.pro
+index 7482cfd..3b72572 100644
+--- a/src/client/client.pro
++++ b/src/client/client.pro
+@@ -15,9 +15,6 @@ use_gold_linker: CONFIG += no_linker_version_script
+ CONFIG -= precompile_header
+ CONFIG += link_pkgconfig wayland-scanner
+ 
+-qtConfig(xkbcommon-evdev): \
+-    QMAKE_USE_PRIVATE += xkbcommon_evdev
+-
+ QMAKE_USE += wayland-client wayland-cursor
+ 
+ INCLUDEPATH += $$PWD/../shared
+diff --git a/src/compositor/wayland_wrapper/wayland_wrapper.pri b/src/compositor/wayland_wrapper/wayland_wrapper.pri
+index 48e55e5..aa8e9c1 100644
+--- a/src/compositor/wayland_wrapper/wayland_wrapper.pri
++++ b/src/compositor/wayland_wrapper/wayland_wrapper.pri
+@@ -23,6 +23,3 @@ SOURCES += \
+     ../shared/qwaylandxkb.cpp \
+ 
+ INCLUDEPATH += wayland_wrapper
+-
+-qtConfig(xkbcommon-evdev): \
+-    QMAKE_USE += xkbcommon_evdev
+diff --git a/src/plugins/shellintegration/ivi-shell/ivi-shell.pro b/src/plugins/shellintegration/ivi-shell/ivi-shell.pro
+index baaf169..55acf1e 100644
+--- a/src/plugins/shellintegration/ivi-shell/ivi-shell.pro
++++ b/src/plugins/shellintegration/ivi-shell/ivi-shell.pro
+@@ -6,9 +6,6 @@ CONFIG += wayland-scanner
+ 
+ QMAKE_USE += wayland-client
+ 
+-qtConfig(xkbcommon-evdev): \
+-    QMAKE_USE += xkbcommon_evdev
+-
+ WAYLANDCLIENTSOURCES += \
+     ../../../3rdparty/protocol/ivi-application.xml \
+     ../../../3rdparty/protocol/ivi-controller.xml
+diff --git a/tests/auto/compositor/compositor/compositor.pro b/tests/auto/compositor/compositor/compositor.pro
+index f0cdaf3..64b6021 100644
+--- a/tests/auto/compositor/compositor/compositor.pro
++++ b/tests/auto/compositor/compositor/compositor.pro
+@@ -7,9 +7,6 @@ QT += core-private gui-private waylandcompositor waylandcompositor-private
+ 
+ QMAKE_USE += wayland-client wayland-server
+ 
+-qtConfig(xkbcommon-evdev)
+-    QMAKE_USE += xkbcommon_evdev
+-
+ WAYLANDCLIENTSOURCES += \
+             ../../../../src/3rdparty/protocol/xdg-shell.xml \
+             ../../../../src/3rdparty/protocol/ivi-application.xml \
+-- 
+2.5.5
+

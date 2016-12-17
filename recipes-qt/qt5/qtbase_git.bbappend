@@ -1,65 +1,15 @@
-############################################################################
-##
-## Copyright (C) 2016 The Qt Company Ltd.
-## Contact: https://www.qt.io/licensing/
-##
-## This file is part of the Boot to Qt meta layer.
-##
-## $QT_BEGIN_LICENSE:GPL$
-## Commercial License Usage
-## Licensees holding valid commercial Qt licenses may use this file in
-## accordance with the commercial license agreement provided with the
-## Software or, alternatively, in accordance with the terms contained in
-## a written agreement between you and The Qt Company. For licensing terms
-## and conditions see https://www.qt.io/terms-conditions. For further
-## information use the contact form at https://www.qt.io/contact-us.
-##
-## GNU General Public License Usage
-## Alternatively, this file may be used under the terms of the GNU
-## General Public License version 3 or (at your option) any later version
-## approved by the KDE Free Qt Foundation. The licenses are as published by
-## the Free Software Foundation and appearing in the file LICENSE.GPL3
-## included in the packaging of this file. Please review the following
-## information to ensure the GNU General Public License requirements will
-## be met: https://www.gnu.org/licenses/gpl-3.0.html.
-##
-## $QT_END_LICENSE$
-##
-############################################################################
+FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
 
-PACKAGECONFIG_GL = "${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'gles2 eglfs', 'no-opengl', d)}"
+SRC_URI += "\
+    file://0001-Support-class-names-not-stating-with-capital-Q.patch \
+    file://0001-Workaround-for-stdlib.h-not-found.patch \
+"
 
-# emulator is exception due to qtglesstream
-PACKAGECONFIG_GL_emulator = "gles2 eglfs"
+PACKAGECONFIG_remove = "linuxfb"
+PACKAGECONFIG += "dbus udev evdev widgets tools libs freetype accessibility tslib libinput libproxy alsa gles2 eglfs gbm kms harfbuzz ico gif sql-psql sql-sqlite mtdev openssl fontconfig icu sctp xkbcommon-evdev"
 
-PACKAGECONFIG += " \
-    accessibility \
-    alsa \
-    cups \
-    fontconfig \
-    freetype \
-    glib \
-    iconv \
-    icu \
-    libinput \
-    linuxfb \
-    qml-debug \
-    sql-sqlite \
-    tslib \
-    xkbcommon-evdev \
-    "
+PACKAGECONFIG += "qml-debug"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+DEPENDS += "virtual/libgles3"
 
-SRC_URI += " \
-    file://oe-device-extra.pri \
-    file://0001-Add-win32-g-oe-mkspec-that-uses-the-OE_-environment.patch \
-    "
-do_configure_prepend() {
-    install -m 0644 ${WORKDIR}/oe-device-extra.pri ${S}/mkspecs
-}
-
-SRCREV = "969bb10eed646313209fcdd9b84605aa98fc88de"
-
-# temporarily here
-PACKAGECONFIG[no-opengl] = "-no-opengl"
+PACKAGECONFIG[sctp] = "-sctp,-no-sctp,lksctp-tools"

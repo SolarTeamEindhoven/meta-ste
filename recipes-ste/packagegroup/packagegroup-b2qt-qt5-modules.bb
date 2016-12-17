@@ -27,12 +27,49 @@
 ##
 ############################################################################
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-SRC_URI += "file://0001-Support-SYSROOT-in-c_rehash.patch"
+DESCRIPTION = "Qt5 modules"
+LICENSE = "The-Qt-Company-DCLA-2.1"
 
-PACKAGECONFIG += "perl"
+inherit packagegroup
 
-do_install_append () {
-    rm -rf ${D}${libdir}/ssl/certs
-    ln -s ${sysconfdir}/ssl/certs ${D}${libdir}/ssl/
-}
+PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
+
+#    qtotaupdate
+RDEPENDS_${PN} += " \
+    qt3d \
+    qtbase \
+    qtcanvas3d \
+    qtcharts \
+    qtconnectivity \
+    qtdatavis3d \
+    qtdeclarative \
+    qtdeclarative-tools \
+    qtdeviceutilities \
+    qtgraphicaleffects \
+    qtimageformats \
+    qtlocation \
+    qtmultimedia \
+    qtquickcontrols \
+    qtquickcontrols2 \
+    qtsensors \
+    qtserialbus \
+    qtserialport \
+    qtsvg \
+    qttools \
+    qttranslations-qt \
+    qttranslations-qtbase \
+    qttranslations-qtdeclarative \
+    qttranslations-qtconnectivity \
+    qttranslations-qtlocation \
+    qttranslations-qtmultimedia \
+    qttranslations-qtquickcontrols \
+    qttranslations-qtserialport \
+    qttranslations-qtwebsockets \
+    qttranslations-qtxmlpatterns \
+    ${@base_contains('DISTRO_FEATURES', 'wayland', 'qtwayland', '', d)} \
+    ${@base_contains('DISTRO_FEATURES', 'webengine', 'qtwebengine qttranslations-qtwebengine', '', d)} \
+    qtwebsockets \
+    qtwebchannel \
+    qtxmlpatterns \
+    qtvirtualkeyboard \
+    "

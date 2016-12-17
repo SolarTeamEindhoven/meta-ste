@@ -1,0 +1,5 @@
+[LAYR]
+name     = STE IVI LAYR 0.1 Repository
+baseurl  = https://repo.vanderschoot.xyz/v0.1
+enabled  = 1
+gpgcheck = 0

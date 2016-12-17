@@ -1,0 +1,25 @@
+From ab03fafd19bc0bce3f511a323a44aabb48d51652 Mon Sep 17 00:00:00 2001
+From: Steven van der Schoot <steven.vanderschoot@solarteameindhoven.nl>
+Date: Tue, 1 Nov 2016 14:26:41 +0100
+Subject: [PATCH 1/2] Enable PCM
+
+---
+ debian/pi-blaster.service | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/debian/pi-blaster.service b/debian/pi-blaster.service
+index eac1457..74070bf 100644
+--- a/debian/pi-blaster.service
++++ b/debian/pi-blaster.service
+@@ -4,7 +4,7 @@ Description=Daemon for PWM control of the Raspberry Pi GPIO pins
+ [Service]
+ EnvironmentFile=-/etc/default/pi-blaster
+ User=root
+-ExecStart=/usr/sbin/pi-blaster $DAEMON_OPTS
++ExecStart=/usr/sbin/pi-blaster --pcm
+ ExecReload=/bin/kill -s HUP $MAINPID
+ Type=forking
+ 
+-- 
+2.5.5
+

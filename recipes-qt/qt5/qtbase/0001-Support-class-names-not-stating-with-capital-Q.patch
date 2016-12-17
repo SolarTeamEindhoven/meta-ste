@@ -1,0 +1,25 @@
+From e25a99b44d46aceaea1db42c99525e654b22a569 Mon Sep 17 00:00:00 2001
+From: Steven van der Schoot <steven.vanderschoot@solarteameindhoven.nl>
+Date: Thu, 28 Jul 2016 11:27:10 +0200
+Subject: [PATCH] Support class names not stating with capital Q
+
+---
+ bin/syncqt.pl | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/bin/syncqt.pl b/bin/syncqt.pl
+index 0c10ccb..9b9014a 100755
+--- a/bin/syncqt.pl
++++ b/bin/syncqt.pl
+@@ -318,7 +318,7 @@ sub classNames {
+
+                 my $revhdr = $reverse_classnames{$symbol};
+                 next if (defined($revhdr) and $revhdr ne $ihdrbase);
+-                if ($symbol =~ /^Q[^:]*$/) {           # no-namespace, starting with Q
++                if ($symbol =~ /^[A-Z][^:]*$/) {           # no-namespace, starting with Q
+                     push @ret, $symbol;
+                 } elsif (defined($publicclassregexp)) {
+                     push @ret, $symbol if ($symbol =~ $publicclassregexp);
+-- 
+2.7.4
+

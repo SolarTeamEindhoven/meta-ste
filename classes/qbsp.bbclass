@@ -58,7 +58,8 @@ VERSION_AUTO_INCREMENT[vardepsexclude] = "DATETIME"
 DEPLOY_CONF_NAME ?= "${MACHINE}"
 RELEASEDATE = "${@time.strftime('%Y-%m-%d',time.gmtime())}"
 
-IMAGE_PACKAGE = "${QBSP_IMAGE_TASK}-${MACHINE}.7z"
+QBPS_ROOTFS_TYPE ?= "7z"
+IMAGE_PACKAGE = "${QBSP_IMAGE_TASK}-${MACHINE}.${QBPS_ROOTFS_TYPE}"
 SDK_NAME = "${DISTRO}-${SDK_MACHINE}-${QBSP_SDK_TASK}-${MACHINE}.${SDK_POSTFIX}"
 SDK_POSTFIX = "sh"
 SDK_POSTFIX_sdkmingw32 = "7z"
@@ -111,7 +112,11 @@ prepare_qbsp() {
     patch_installer_files ${IMAGE_PATH}/meta
 
     mkdir -p ${B}/images/${QBSP_INSTALL_PATH}/images
-    7z x ${DEPLOY_DIR_IMAGE}/${IMAGE_PACKAGE} -o${B}/images/${QBSP_INSTALL_PATH}/images/
+    if [ "${QBPS_ROOTFS_TYPE}" == "7z" ]; then
+        7z x ${DEPLOY_DIR_IMAGE}/${IMAGE_PACKAGE} -o${B}/images/${QBSP_INSTALL_PATH}/images/
+    else
+        cp -a "${DEPLOY_DIR_IMAGE}/${IMAGE_PACKAGE}" "${B}/images/${QBSP_INSTALL_PATH}/images"
+    fi
 
     cd ${B}/images
     archivegen ${IMAGE_PATH}/data/image.7z *

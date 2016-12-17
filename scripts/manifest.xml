@@ -15,20 +15,20 @@
 
   <project name="poky"
            remote="yocto"
-           revision="fc75bea445bb57e1e942b5049ee2b6e5245649ea"
+           revision="14539203655913b3304bf98d2dd1f2e1fed3d7ca"
            path="sources/poky"/>
   <project name="meta-openembedded"
            remote="oe-mirror"
-           revision="247b1267bbe95719cd4877d2d3cfbaf2a2f4865a"
+           revision="c7a90c502b4251576ed6371a80187f5b74b103f2"
            path="sources/meta-openembedded"/>
   <project name="meta-qt5"
            remote="qtyocto"
-           revision="4e113c7b8e0a7512d2f0ad306decc8b4885ef807"
+           revision="c4a0a450b4275cc3869cf389c92e86b62f09fcea"
            path="sources/meta-qt5"/>
   <project name="meta-mingw"
            remote="qtyocto"
            path="sources/meta-mingw"
-           revision="70e42fd678d494bf11a12cb57eff820142543159"/>
+           revision="4a877547146f32f4540664b0c677d99b33d12bfd"/>
 
   <project name="meta-fsl-arm"
            remote="yocto"
@@ -42,7 +42,7 @@
            groups="notdefault,external,ti"/>
   <project name="meta-raspberrypi"
            remote="yocto"
-           revision="2745399f75d7564fcc586d0365ff73be47849d0e"
+           revision="17f0c233054791ff21dcaf747f842d901282ae05"
            path="sources/meta-raspberrypi"
            groups="notdefault,external,rpi"/>
   <project name="meta-fsl-arm-extra"

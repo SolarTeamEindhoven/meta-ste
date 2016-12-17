@@ -1,0 +1,26 @@
+DESCRIPTION = "STE LAYR Softkey plugin"
+
+require recipes-qt/qt5/qt5.inc
+
+LICENSE = "LGPL-3.0"
+LIC_FILES_CHKSUM = "file://LICENSE.LGPLv3;md5=c4fe8c6de4eef597feec6e90ed62e962"
+
+inherit qmake5
+
+BRANCH = "develop"
+
+STE_MODULE = "LAYR-SoftkeyPlugin"
+STE_BRANCH ?= "develop"
+STE_BRANCH_PARAM ?= "branch=${STE_BRANCH}"
+
+# each module needs to define valid SRCREV
+SRC_URI = " \
+    ${STE_GIT}/${STE_MODULE}.git;name=${STE_MODULE};${STE_BRANCH_PARAM};protocol=${STE_GIT_PROTOCOL} \
+"
+
+SRCREV = "9cea726d67031015b9ddf31761baeaa055ff55eb"
+
+S = "${WORKDIR}/git"
+PV = "0.0.1+git${SRCPV}"
+
+DEPENDS = "qtbase qtdeclarative ivi-launchersdk"

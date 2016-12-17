@@ -27,12 +27,22 @@
 ##
 ############################################################################
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-SRC_URI += "file://0001-Support-SYSROOT-in-c_rehash.patch"
+DESCRIPTION = "Meta task for QBSP creation"
 
-PACKAGECONFIG += "perl"
+LICENSE = "The-Qt-Company-DCLA-2.1"
+LIC_FILES_CHKSUM = "file://${QT_LICENSE};md5=80e06902b5f0e94ad0a78ee4f7fcb74b"
 
-do_install_append () {
-    rm -rf ${D}${libdir}/ssl/certs
-    ln -s ${sysconfdir}/ssl/certs ${D}${libdir}/ssl/
-}
+# get Qt version number
+require recipes-qt/qt5/qt5-git.inc
+S = "${WORKDIR}"
+
+inherit qbsp
+
+PV := "${@d.getVar('PV', True)[0:5]}"
+
+VERSION_SHORT = "${@d.getVar('DISTRO_VERSION', True).replace('.','_')}"
+QBSP_INSTALLER_COMPONENT = "solarteameindhoven.ivi.${VERSION_SHORT}.yocto.${MACHINE}"
+QBSP_INSTALL_PATH = "/${QT_MODULE_BRANCH}/STE-IVI/${MACHINE}"
+
+QBSP_SDK_TASK = "meta-toolchain-ste-ivi-sdk"
+QBSP_IMAGE_TASK = "ste-ivi-devel"

@@ -1,0 +1,15 @@
+[Unit]
+Description=LAYR Launcher
+After=systemd-user-sessions.service
+
+[Service]
+ExecStart=/usr/bin/LAYR-Launcher -platform eglfs
+Environment=XDG_RUNTIME_DIR=/tmp
+Environment=QT_QPA_EGLFS_INTEGRATION=eglfs_kms
+Environment=STE_SOFTKEY_PROVIDERS=layrsoftkey-emulator
+Environment=STE_VEHICLE_INTERACTION_BACKENDS=LAYR-VehicleIntegration
+Environment=STE_ENABLE_DEBUG=1
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

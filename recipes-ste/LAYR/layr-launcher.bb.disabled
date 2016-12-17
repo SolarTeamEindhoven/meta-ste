@@ -1,0 +1,34 @@
+DESCRIPTION = "STE LAYR Launcher"
+LICENSE = "LGPL-3.0"
+LIC_FILES_CHKSUM = "file://LICENSE.LGPLv3;md5=c4fe8c6de4eef597feec6e90ed62e962"
+
+inherit qmake5
+#systemd
+
+BRANCH = "develop"
+
+STE_MODULE = "LAYR-Launcher"
+STE_BRANCH ?= "develop"
+STE_BRANCH_PARAM ?= "branch=${STE_BRANCH}"
+
+# each module needs to define valid SRCREV
+SRC_URI = " \
+    ${STE_GIT}/${STE_MODULE}.git;name=${STE_MODULE};${STE_BRANCH_PARAM};protocol=${STE_GIT_PROTOCOL} \
+    file://LAYR-Launcher.service \
+"
+
+SRCREV = "f3ab0aa5f250e1393f9c976e8062c22ccb9d37d4"
+
+S = "${WORKDIR}/git"
+PV = "0.0.1+git${SRCPV}"
+
+#do_install_append() {
+#    install -m 0755 -d ${D}${systemd_unitdir}/system
+#    install -m 0644 ${WORKDIR}/LAYR-Launcher.service ${D}${systemd_unitdir}/system/
+#}
+
+DEPENDS = "qtbase qtdeclarative ivi-launchersdk"
+
+FILES_${PN} = "${OE_QMAKE_PATH_BINS}/*"
+FILES_${PN}-dbg = "${OE_QMAKE_PATH_BINS}/.debug"
+SYSTEMD_SERVICE_${PN} = "LAYR-Launcher.service"
