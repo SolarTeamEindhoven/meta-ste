@@ -1,0 +1,54 @@
+From 3f42708a5fabb9c041e7b4ac6f94249d221a1c18 Mon Sep 17 00:00:00 2001
+From: Steven van der Schoot <stevenvdschoot@gmail.com>
+Date: Thu, 29 Dec 2016 14:20:31 +0100
+Subject: [PATCH] Add AD7998 overlay to
+
+---
+ arch/arm/boot/dts/overlays/Makefile   |  1 +
+ arch/arm/boot/dts/overlays/ad7998.dts | 22 ++++++++++++++++++++++
+ 2 files changed, 23 insertions(+)
+ create mode 100644 arch/arm/boot/dts/overlays/ad7998.dts
+
+diff --git a/arch/arm/boot/dts/overlays/Makefile b/arch/arm/boot/dts/overlays/Makefile
+index 11dba31..438e6ab 100644
+--- a/arch/arm/boot/dts/overlays/Makefile
++++ b/arch/arm/boot/dts/overlays/Makefile
+@@ -1,6 +1,7 @@
+ # Overlays for the Raspberry Pi platform
+ 
+ dtbo-$(CONFIG_ARCH_BCM2835) += \
++	ad7998.dtbo \
+ 	adau1977-adc.dtbo \
+ 	ads1015.dtbo \
+ 	ads7846.dtbo \
+diff --git a/arch/arm/boot/dts/overlays/ad7998-overlay.dts b/arch/arm/boot/dts/overlays/ad7998-overlay.dts
+new file mode 100644
+index 0000000..957e19a
+--- /dev/null
++++ b/arch/arm/boot/dts/overlays/ad7998-overlay.dts
+@@ -0,0 +1,22 @@
++/*
++ * 2016 - Steven van der Schoot
++ */
++/dts-v1/;
++/plugin/;
++
++/ {
++    compatible = "brcm,bcm2708";
++    fragment@0 {
++        target = <&i2c_arm>;
++        __overlay__ {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            status = "okay";
++            ad7998: ad7998@21 {
++                compatible = "adi,ad7998";
++                status = "okay";
++                reg = <0x21>;
++            };
++        };
++    };
++};
+-- 
+2.9.3
+
