@@ -1,1 +1,1 @@
-PROVIDES += "virtual/libgles3 gbm"
+PROVIDES += "virtual/libgles3"
