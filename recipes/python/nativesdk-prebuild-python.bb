@@ -27,7 +27,7 @@
 ##
 ############################################################################
 
-LICENSE = "PSFv2"
+LICENSE = "Python-2.0"
 
 inherit bin_package nativesdk
 
@@ -36,6 +36,8 @@ COMPATIBLE_HOST = ".*-mingw.*"
 SRC_URI[md5sum] = "6d37712f01fa836b1303141a6d4cabda"
 SRC_URI[sha256sum] = "3835868c171dddb8cb68ed5578b6d4d639387a038e999a5b008f393b704d6ad7"
 SRC_URI = "http://download.qt.io/development_releases/prebuilt/gdb/build-prerequisites/python.zip"
+
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/Python-2.0;md5=a5c8025e305fb49e6d405769358851f6"
 
 S = "${WORKDIR}"
 
