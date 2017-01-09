@@ -13,74 +13,21 @@
   <remote fetch="git://github.com/openembedded" name="oe-mirror"/>
   <remote fetch="ssh://git@git.qt.io/boot2qt" name="playground"/>
 
-  <project name="poky"
-           remote="yocto"
-           revision="dbb247cac5fbf7b037e4955f9793828451723924"
-           path="sources/poky"/>
-  <project name="meta-openembedded"
-           remote="oe-mirror"
-           revision="380f0cef364c1a3749b574ee29f44cca004088b0"
-           path="sources/meta-openembedded"/>
-  <project name="meta-qt5"
-           remote="qtyocto"
-           revision="7d9f1f7984e3f6b0521e76a390f2456c674e6ea0"
-           path="sources/meta-qt5"/>
-  <project name="meta-mingw"
-           remote="qtyocto"
-           path="sources/meta-mingw"
-           revision="4a877547146f32f4540664b0c677d99b33d12bfd"/>
+  <project name="poky" remote="yocto" revision="dbb247cac5fbf7b037e4955f9793828451723924" path="sources/poky"/>
+  <project name="meta-openembedded" remote="oe-mirror" revision="380f0cef364c1a3749b574ee29f44cca004088b0" path="sources/meta-openembedded"/>
+  <project name="meta-qt5" remote="qtyocto" revision="7d9f1f7984e3f6b0521e76a390f2456c674e6ea0" path="sources/meta-qt5"/>
+  <project name="meta-mingw" remote="qtyocto" path="sources/meta-mingw" revision="4a877547146f32f4540664b0c677d99b33d12bfd"/>
 
-  <project name="meta-fsl-arm"
-           remote="yocto"
-           revision="a6b95df4d7ab122f1e5b7632e2273b75f853af4b"
-           path="sources/meta-fsl-arm"
-           groups="notdefault,external,fsl,ti,smx6,renesas"/>
-  <project name="meta-ti"
-           remote="yocto"
-           revision="f807c7185321fb407e82c529ddff310dc037f727"
-           path="sources/meta-ti"
-           groups="notdefault,external,ti"/>
-  <project name="meta-raspberrypi"
-           remote="yocto"
-           revision="031e26954b95d49a66ea4677b9e867d08441f450"
-           path="sources/meta-raspberrypi"
-           groups="notdefault,external,rpi"/>
-  <project name="meta-fsl-arm-extra"
-           remote="freescale"
-           revision="99649b72f60fda4a2cfb2333791fe0f92997fa9e"
-           path="sources/meta-fsl-arm-extra"
-           groups="notdefault,external,fsl,smx6"/>
-  <project name="meta-intel"
-           remote="intel"
-           revision="b8c199201ffe026485a14e1fcfc398e2b3551512"
-           path="sources/meta-intel"
-           groups="notdefault,external,intel"/>
-  <project name="meta-renesas"
-           remote="yocto"
-           revision="d20e5bffb582c6bfabdadc22e903df86c8cfd66b"
-           path="sources/meta-renesas"
-           groups="notdefault,external,renesas"/>
+  <project name="meta-fsl-arm" remote="yocto" revision="a6b95df4d7ab122f1e5b7632e2273b75f853af4b" path="sources/meta-fsl-arm" groups="notdefault,external,fsl,ti,smx6,renesas"/>
+  <project name="meta-ti" remote="yocto" revision="f807c7185321fb407e82c529ddff310dc037f727" path="sources/meta-ti" groups="notdefault,external,ti"/>
+  <project name="meta-raspberrypi" remote="yocto" revision="031e26954b95d49a66ea4677b9e867d08441f450" path="sources/meta-raspberrypi" groups="notdefault,external,rpi"/>
+  <project name="meta-fsl-arm-extra" remote="freescale" revision="99649b72f60fda4a2cfb2333791fe0f92997fa9e" path="sources/meta-fsl-arm-extra" groups="notdefault,external,fsl,smx6"/>
+  <project name="meta-intel" remote="intel" revision="b8c199201ffe026485a14e1fcfc398e2b3551512" path="sources/meta-intel" groups="notdefault,external,intel"/>
+  <project name="meta-renesas" remote="yocto" revision="d20e5bffb582c6bfabdadc22e903df86c8cfd66b" path="sources/meta-renesas" groups="notdefault,external,renesas"/>
 
-  <project name="nvidia-layer"
-           remote="playground"
-           revision="7c95fabf8d71617130f71464207dd55c3079facd"
-           path="sources/nvidia-layer"
-           groups="notdefault,internal"/>
-  <project name="vibrante-t186"
-           remote="playground"
-           revision="e947e8f412b41ef673714e752a4065dc2f4fb04e"
-           path="sources/vibrante-t186"
-           groups="notdefault,internal"/>
-  <project name="meta-smx6"
-           remote="playground"
-           revision="c2f639ef4b2fd5809ab95fb330d28c2716aa290d"
-           path="sources/meta-smx6"
-           groups="notdefault,internal"/>
-  <project name="renesas-rcar-gen2"
-           remote="playground"
-           revision="93b2464ca1c6200a1bdf2afcabac0c2c7e9bdf6d"
-           path="sources/renesas-rcar-gen2"
-           groups="notdefault,internal"/>
+  <project name="nvidia-layer" remote="playground" revision="7c95fabf8d71617130f71464207dd55c3079facd" path="sources/nvidia-layer" groups="notdefault,internal"/>
+  <project name="vibrante-t186" remote="playground" revision="e947e8f412b41ef673714e752a4065dc2f4fb04e" path="sources/vibrante-t186" groups="notdefault,internal"/>
+  <project name="meta-smx6" remote="playground" revision="c2f639ef4b2fd5809ab95fb330d28c2716aa290d" path="sources/meta-smx6" groups="notdefault,internal"/>
+  <project name="renesas-rcar-gen2" remote="playground" revision="93b2464ca1c6200a1bdf2afcabac0c2c7e9bdf6d" path="sources/renesas-rcar-gen2" groups="notdefault,internal"/>
 
 </manifest>
-
