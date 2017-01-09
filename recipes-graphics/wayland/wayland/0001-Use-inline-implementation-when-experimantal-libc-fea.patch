@@ -1,0 +1,44 @@
+From e46ec43687f340f2272c1dd1dd891f08f368c78d Mon Sep 17 00:00:00 2001
+From: Steven van der Schoot <steven.vanderschoot@solarteameindhoven.nl>
+Date: Wed, 28 Dec 2016 00:29:22 +0100
+Subject: [PATCH] Use inline implementation when experimantal libc features are
+ not available
+
+---
+ src/scanner.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/src/scanner.c b/src/scanner.c
+index c927275..c9bffd7 100644
+--- a/src/scanner.c
++++ b/src/scanner.c
+@@ -52,6 +52,26 @@ extern int DTD_DATA_len;
+ 
+ #define PROGRAM_NAME "wayland-scanner"
+ 
++#ifndef __STDC_ALLOC_LIB__
++#undef strndup
++inline char *
++strndup (const char *s, size_t n)
++{
++  char *result;
++  size_t len = strlen (s);
++
++  if (n < len)
++    len = n;
++
++  result = (char *) malloc (len + 1);
++  if (!result)
++    return 0;
++
++  result[len] = '\0';
++  return (char *) memcpy (result, s, len);
++}
++#endif
++
+ enum side {
+ 	CLIENT,
+ 	SERVER,
+-- 
+2.5.5
+
