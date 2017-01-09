@@ -1,0 +1,24 @@
+From 1167a2a8da352bff6792080cff0468eec337ce77 Mon Sep 17 00:00:00 2001
+From: Steven van der Schoot <steven.vanderschoot@solarteameindhoven.nl>
+Date: Tue, 20 Dec 2016 13:32:10 +0100
+Subject: [PATCH] Remove unnedded POSIX header
+
+---
+ src/gdbmdump.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/gdbmdump.c b/src/gdbmdump.c
+index 1b374f3..84a8923 100644
+--- a/src/gdbmdump.c
++++ b/src/gdbmdump.c
+@@ -17,7 +17,6 @@
+ # include "autoconf.h"
+ # include "gdbmdefs.h"
+ # include "gdbm.h"
+-# include <pwd.h>
+ # include <grp.h>
+ # include <time.h>
+ 
+-- 
+2.5.5
+

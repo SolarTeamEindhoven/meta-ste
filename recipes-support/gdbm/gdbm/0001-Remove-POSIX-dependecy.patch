@@ -1,0 +1,62 @@
+From bcdb63c4b009ed55bce60ea688f5c0d503f443f0 Mon Sep 17 00:00:00 2001
+From: Steven van der Schoot <steven.vanderschoot@solarteameindhoven.nl>
+Date: Tue, 20 Dec 2016 13:32:10 +0100
+Subject: [PATCH] Remove POSIX dependecy
+
+---
+ src/gdbmdump.c | 11 -----------
+ src/gdbmexp.c  |  2 +-
+ 2 files changed, 1 insertion(+), 12 deletions(-)
+
+diff --git a/src/gdbmdump.c b/src/gdbmdump.c
+index 1b374f3..6b1a323 100644
+--- a/src/gdbmdump.c
++++ b/src/gdbmdump.c
+@@ -17,8 +17,6 @@
+ # include "autoconf.h"
+ # include "gdbmdefs.h"
+ # include "gdbm.h"
+-# include <pwd.h>
+-# include <grp.h>
+ # include <time.h>
+ 
+ static int
+@@ -56,8 +54,6 @@ _gdbm_dump_ascii (GDBM_FILE dbf, FILE *fp)
+   time_t t;
+   int fd;
+   struct stat st;
+-  struct passwd *pw;
+-  struct group *gr;
+   datum key;
+   size_t count = 0;
+   unsigned char *buffer = NULL;
+@@ -76,13 +72,6 @@ _gdbm_dump_ascii (GDBM_FILE dbf, FILE *fp)
+ 
+   fprintf (fp, "#:file=%s\n", dbf->name);
+   fprintf (fp, "#:uid=%lu,", (unsigned long) st.st_uid);
+-  pw = getpwuid (st.st_uid);
+-  if (pw)
+-    fprintf (fp, "user=%s,", pw->pw_name);
+-  fprintf (fp, "gid=%lu,", (unsigned long) st.st_gid);
+-  gr = getgrgid (st.st_gid);
+-  if (gr)
+-    fprintf (fp, "group=%s,", gr->gr_name);
+   fprintf (fp, "mode=%03o\n", st.st_mode & 0777);
+   fprintf (fp, "# End of header\n");
+   
+diff --git a/src/gdbmexp.c b/src/gdbmexp.c
+index e3babc0..b933043 100644
+--- a/src/gdbmexp.c
++++ b/src/gdbmexp.c
+@@ -18,7 +18,7 @@
+ 
+ /* Include system configuration before all else. */
+ # include "autoconf.h"
+-# include <arpa/inet.h>
++# include <winsock2.h>
+ 
+ # include "gdbmdefs.h"
+ # include "gdbm.h"
+-- 
+2.5.5
+
