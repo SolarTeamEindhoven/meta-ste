@@ -15,7 +15,7 @@
   <remote fetch="git://github.com/solarteameindhoven" name="ste"/>
 
   <project name="poky" remote="yocto" revision="dbb247cac5fbf7b037e4955f9793828451723924" path="sources/poky"/>
-  <project name="meta-openembedded" remote="oe-mirror" revision="380f0cef364c1a3749b574ee29f44cca004088b0" path="sources/meta-openembedded"/>
+  <project name="meta-openembedded" remote="ste" revision="bb30059e47605f0393d813d7e5db634508d5bd4d" path="sources/meta-openembedded"/>
   <project name="meta-qt5" remote="qtyocto" revision="7d9f1f7984e3f6b0521e76a390f2456c674e6ea0" path="sources/meta-qt5"/>
   <project name="meta-mingw" remote="ste" path="sources/meta-mingw" revision="773ec29ff50d34d0966036ce39d12c1af50d078f"/>
 
