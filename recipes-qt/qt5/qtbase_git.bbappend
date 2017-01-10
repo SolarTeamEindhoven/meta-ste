@@ -16,6 +16,7 @@ do_configure_prepend() {
     install -m 0644 ${WORKDIR}/oe-device-extra.pri ${S}/mkspecs
 }
 
-DEPENDS += "virtual/libgles3"
-
 PACKAGECONFIG[sctp] = "-sctp,-no-sctp,lksctp-tools"
+
+# make other libgbm providers possible
+PACKAGECONFIG[gbm] = "-gbm,-no-gbm,virtual/libgbm"

@@ -49,8 +49,11 @@ RDEPENDS_${PN} += " \
     qtimageformats \
     qtlocation \
     qtmultimedia \
+    qtnetworkauth \
+    qtotaupdate \
     qtquickcontrols \
     qtquickcontrols2 \
+    qtscxml \
     qtsensors \
     qtserialbus \
     qtserialport \
