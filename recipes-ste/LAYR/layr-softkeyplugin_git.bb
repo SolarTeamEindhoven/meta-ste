@@ -17,4 +17,4 @@ FILES_${PN} += " \
 "
 FILES_${PN}-dev += "${libdir}/cmake/*/*.cmake"
 
-DEPENDS = "qtbase qtdeclarative ivi-launchersdk"
+DEPENDS = "qtbase qtdeclarative ivi-launchersdk libiio"
