@@ -14,14 +14,14 @@
   <remote fetch="ssh://git@git.qt.io/boot2qt" name="playground"/>
   <remote fetch="git://github.com/solarteameindhoven" name="ste"/>
 
-  <project name="poky" remote="yocto" revision="dbb247cac5fbf7b037e4955f9793828451723924" path="sources/poky"/>
-  <project name="meta-openembedded" remote="ste" revision="bb30059e47605f0393d813d7e5db634508d5bd4d" path="sources/meta-openembedded"/>
+  <project name="poky" remote="yocto" revision="b47ecf28775830efab423fa12f0addb68671cc06" path="sources/poky"/>
+  <project name="meta-openembedded" remote="ste" revision="1f28e786acea5e00b5b384069dc4970aa14da643" path="sources/meta-openembedded"/>
   <project name="meta-qt5" remote="qtyocto" revision="02dca2673dba478ee11bfbab62888d2cdbe961e4" path="sources/meta-qt5"/>
   <project name="meta-mingw" remote="ste" path="sources/meta-mingw" revision="773ec29ff50d34d0966036ce39d12c1af50d078f"/>
 
   <project name="meta-fsl-arm" remote="yocto" revision="a6b95df4d7ab122f1e5b7632e2273b75f853af4b" path="sources/meta-fsl-arm" groups="notdefault,external,fsl,ti,smx6,renesas"/>
   <project name="meta-ti" remote="yocto" revision="f807c7185321fb407e82c529ddff310dc037f727" path="sources/meta-ti" groups="notdefault,external,ti"/>
-  <project name="meta-raspberrypi" remote="yocto" revision="031e26954b95d49a66ea4677b9e867d08441f450" path="sources/meta-raspberrypi" groups="notdefault,external,rpi"/>
+  <project name="meta-raspberrypi" remote="yocto" revision="ec28a0d5b3fd10a07a0ec31deb92a6e4c0536f0c" path="sources/meta-raspberrypi" groups="notdefault,external,rpi"/>
   <project name="meta-fsl-arm-extra" remote="freescale" revision="99649b72f60fda4a2cfb2333791fe0f92997fa9e" path="sources/meta-fsl-arm-extra" groups="notdefault,external,fsl,smx6"/>
   <project name="meta-intel" remote="intel" revision="b8c199201ffe026485a14e1fcfc398e2b3551512" path="sources/meta-intel" groups="notdefault,external,intel"/>
   <project name="meta-renesas" remote="yocto" revision="d20e5bffb582c6bfabdadc22e903df86c8cfd66b" path="sources/meta-renesas" groups="notdefault,external,renesas"/>
