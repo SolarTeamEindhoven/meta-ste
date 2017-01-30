@@ -27,4 +27,7 @@
 ##
 ############################################################################
 
-SRCREV = "4704292500b98143eee9b0fb0b6a34a858ed1253"
+PACKAGECONFIG += "gypsy"
+
+EXTRA_QMAKEVARS_PRE_emulator += "CONFIG+=simulator"
+DEPENDS_emulator += "qtsimulator"

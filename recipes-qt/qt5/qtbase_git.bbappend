@@ -8,9 +8,36 @@ SRC_URI += "\
 "
 
 PACKAGECONFIG_remove = "linuxfb"
-PACKAGECONFIG += "dbus udev evdev widgets tools libs freetype accessibility tslib libinput libproxy alsa gles2 eglfs gbm kms harfbuzz ico gif sql-psql sql-sqlite mtdev openssl fontconfig icu sctp xkbcommon-evdev"
-
-PACKAGECONFIG += "qml-debug"
+PACKAGECONFIG += " \
+    accessibility \
+    dbus \
+    eglfs \
+    evdev \
+    fontconfig \
+    freetype \
+    gbm \
+    gif \
+    gles2 \
+    glib \
+    harfbuzz \
+    ico \
+    icu \
+    kms \
+    libinput \
+    libproxy \
+    libs \
+    mtdev \
+    openssl \
+    qml-debug \
+    sctp \
+    sql-psql \
+    sql-sqlite \
+    tools \
+    tslib \
+    udev \
+    widgets \
+    xkbcommon-evdev \
+    "
 
 do_configure_prepend() {
     install -m 0644 ${WORKDIR}/oe-device-extra.pri ${S}/mkspecs

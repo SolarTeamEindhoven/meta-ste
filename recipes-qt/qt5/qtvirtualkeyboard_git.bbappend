@@ -1,1 +1,3 @@
-PACKAGECONFIG += "hunspell lipi-toolkit lang-all"
+inherit qtquickcompiler
+
+PACKAGECONFIG = "lipi-toolkit lang-all hunspell"
