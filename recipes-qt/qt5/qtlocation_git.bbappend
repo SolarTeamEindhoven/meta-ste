@@ -27,7 +27,7 @@
 ##
 ############################################################################
 
-PACKAGECONFIG += "gypsy"
+#PACKAGECONFIG += "gypsy"
 
 EXTRA_QMAKEVARS_PRE_emulator += "CONFIG+=simulator"
 DEPENDS_emulator += "qtsimulator"
