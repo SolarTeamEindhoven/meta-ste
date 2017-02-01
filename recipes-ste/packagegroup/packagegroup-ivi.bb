@@ -67,6 +67,6 @@ RDEPENDS_${PN} = "\
 	layr-launcher \
 	layr-softkeyplugin \
 	layr-vehicleintegrationplugin \
-	libiio \
+	layr-controllerdaemon \
 	"
 

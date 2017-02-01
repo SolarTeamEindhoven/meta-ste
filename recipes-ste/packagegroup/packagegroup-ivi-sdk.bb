@@ -69,4 +69,5 @@ RDEPENDS_${PN} += " \
     libgles2-mesa-dev \
     libgles3-mesa-dev \
     libiio-dev \
+    avahi-dev \
     "
