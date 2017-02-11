@@ -28,7 +28,9 @@
 ############################################################################
 
 SRC_URI_remove = "file://0001-update-ca-certificates-remove-c-rehash.patch"
-DEPENDS_class-native = "coreutils-native"
+DEPENDS = "openssl-native"
+
+DEPENDS_class-native = "openssl-native coreutils-native"
 
 # for c_rehash
 RDEPENDS_${PN}_class-target += "openssl openssl-misc"
