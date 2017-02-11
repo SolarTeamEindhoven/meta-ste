@@ -16,7 +16,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.LGPLv3;md5=c4fe8c6de4eef597feec6e90ed62e962 \
 "
 
-DEPENDS = "qtbase qtdeclarative qtwayland"
+DEPENDS = "qtbase qtdeclarative qtwayland qtwayland-native"
 
 S = "${WORKDIR}/git"
 
