@@ -24,7 +24,7 @@ Initialize build environment
 
 To automaticaly download all dependecies of this layer:
 ```bash
-meta-ste/b2qt-init-build-env init --device raspberrypi3
+sources/meta-ste/b2qt-init-build-env init --device raspberrypi3
 ```
 
 Build the image and SDK
