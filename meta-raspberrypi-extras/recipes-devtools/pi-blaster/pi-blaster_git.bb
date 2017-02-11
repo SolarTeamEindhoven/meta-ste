@@ -16,6 +16,9 @@ S = "${WORKDIR}/git"
 
 inherit systemd autotools pkgconfig
 
+PACKAGECONFIG ?= "${@bb.utils.contains("DISTRO_FEATURES", "systemd", "systemd", "", d)}"
+PACKAGECONFIG[systemd] = ",,systemd"
+
 SYSTEMD_SERVICE_${PN} = "pi-blaster.service"
 
 COMPATIBLE_MACHINE = "raspberrypi"
