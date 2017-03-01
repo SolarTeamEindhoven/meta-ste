@@ -16,7 +16,7 @@
 
   <project name="poky" remote="ste" revision="5e678158651c1eaaf903082aa9438779b4beb667" path="sources/poky"/>
   <project name="meta-openembedded" remote="oe" revision="5ecbf9bab404af0de7d0f058d1620f40dae0d2d8" path="sources/meta-openembedded"/>
-  <project name="meta-qt5" remote="qtyocto" revision="1c88e9b361b9df92edf27b7d23f1bc3f07e784a3" path="sources/meta-qt5"/>
+  <project name="meta-qt5" remote="qtyocto" revision="251beba0ca5f7fae85b8fd9c20851c53347c9722" path="sources/meta-qt5"/>
   <project name="meta-mingw" remote="qtyocto" path="sources/meta-mingw" revision="0cfd9b1a41b38a2f7c1cfcbc2abe046e3737ae31"/>
 
   <project name="meta-fsl-arm" remote="yocto" revision="a6b95df4d7ab122f1e5b7632e2273b75f853af4b" path="sources/meta-fsl-arm" groups="notdefault,external,fsl,ti,smx6,renesas"/>
