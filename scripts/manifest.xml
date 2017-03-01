@@ -21,7 +21,7 @@
 
   <project name="meta-fsl-arm" remote="yocto" revision="a6b95df4d7ab122f1e5b7632e2273b75f853af4b" path="sources/meta-fsl-arm" groups="notdefault,external,fsl,ti,smx6,renesas"/>
   <project name="meta-ti" remote="yocto" revision="f807c7185321fb407e82c529ddff310dc037f727" path="sources/meta-ti" groups="notdefault,external,ti"/>
-  <project name="meta-raspberrypi" remote="ste" revision="8220f986ce8567c1f08ccd319a2ce421147c0003" path="sources/meta-raspberrypi" groups="notdefault,external,rpi"/>
+  <project name="meta-raspberrypi" remote="ste" revision="13b5325263014020b33a74078028313ff8670fd9" path="sources/meta-raspberrypi" groups="notdefault,external,rpi"/>
   <project name="meta-fsl-arm-extra" remote="freescale" revision="99649b72f60fda4a2cfb2333791fe0f92997fa9e" path="sources/meta-fsl-arm-extra" groups="notdefault,external,fsl,smx6"/>
   <project name="meta-intel" remote="intel" revision="b8c199201ffe026485a14e1fcfc398e2b3551512" path="sources/meta-intel" groups="notdefault,external,intel"/>
   <project name="meta-renesas" remote="yocto" revision="d20e5bffb582c6bfabdadc22e903df86c8cfd66b" path="sources/meta-renesas" groups="notdefault,external,renesas"/>
