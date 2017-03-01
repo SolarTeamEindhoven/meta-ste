@@ -1,1 +1,3 @@
-PACKAGECONFIG += "opus icu ffmpeg libwebp libwebp flac libevent speex vpx"
+
+# icu
+PACKAGECONFIG += "opus ffmpeg libwebp flac libevent libxslt speex vpx"
