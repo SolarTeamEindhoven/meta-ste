@@ -9,11 +9,11 @@ inherit qmake5 systemd
 require LAYR-git.inc
 
 STE_MODULE_BRANCH = "master"
-SRCREV = "77c8375d203fa3c4e49dd84b5092536cd8508166"
+SRCREV = "3c438c2fc912c95681e25395390734b3c1d9da29"
 
 S = "${WORKDIR}/git"
 
-DEPENDS = "qtbase libiio"
+DEPENDS = "qtbase libiio fftw"
 
 do_install_append() {
 	install -m 0755 -d ${D}${systemd_unitdir}/system
