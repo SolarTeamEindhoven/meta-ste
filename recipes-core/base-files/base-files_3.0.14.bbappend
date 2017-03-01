@@ -8,6 +8,7 @@ do_install_append_ste-ivi () {
 	echo "export QT_WAYLAND_DISABLE_WINDOWDECORATION=1" >> ${D}${sysconfdir}/profile
 	echo "export QT_WAYLAND_USE_BYPASSWINDOWMANAGERHINT=1" >> ${D}${sysconfdir}/profile
 	echo "" >> ${D}${sysconfdir}/profile
+	echo "export QT_AUTO_SCREEN_SCALE_FACTOR=\"1\"" >> ${D}${sysconfdir}/profile
 	echo "export QT_QUICK_CONTROLS_STYLE=\"material\"" >> ${D}${sysconfdir}/profile
 	echo "export QT_QUICK_CONTROLS_MATERIAL_ACCENT=\"DeepOrange\"" >> ${D}${sysconfdir}/profile
 	echo "export QT_QUICK_CONTROLS_MATERIAL_PRIMARY=\"Yellow\"" >> ${D}${sysconfdir}/profile
