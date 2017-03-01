@@ -8,6 +8,7 @@ DISTRO_UPDATE_ALTERNATIVES ??= ""
 ROOTFS_PKGMANAGE_PKGS ?= '${@base_conditional("ONLINE_PACKAGE_MANAGEMENT", "none", "", "${ROOTFS_PKGMANAGE} ${DISTRO_UPDATE_ALTERNATIVES}", d)}'
 
 #        ${MACHINE_EXTRA_INSTALL}
+#	qtwebkit 
 RDEPENDS_${PN} = "\
 	kernel-modules \
 	psplash \
@@ -68,5 +69,45 @@ RDEPENDS_${PN} = "\
 	layr-softkeyplugin \
 	layr-vehicleintegrationplugin \
 	layr-controllerdaemon \
+	\
+	qt3d \
+	qtbase \
+	qtcanvas3d \
+	qtcharts \
+	qtconnectivity \
+	qtdatavis3d \
+	qtdeclarative \
+	qtdeclarative-tools \
+	qtdeviceutilities \
+	qtgraphicaleffects \
+	qtimageformats \
+	qtlocation \
+	qtmultimedia \
+	qtnetworkauth \
+	qtquickcontrols \
+	qtquickcontrols2 \
+	qtscxml \
+	qtsensors \
+	qtserialbus \
+	qtserialport \
+	qtsvg \
+	qttools \
+	qttranslations-qt \
+	qttranslations-qtbase \
+	qttranslations-qtdeclarative \
+	qttranslations-qtconnectivity \
+	qttranslations-qtlocation \
+	qttranslations-qtmultimedia \
+	qttranslations-qtquickcontrols \
+	qttranslations-qtserialport \
+	qttranslations-qtwebengine \
+	qttranslations-qtwebsockets \
+	qttranslations-qtxmlpatterns \
+	qtwayland \
+	qtwebchannel \
+	${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtwebengine', '', d)} \
+	qtwebsockets \
+	qtxmlpatterns \
+	qtvirtualkeyboard \
 	"
 

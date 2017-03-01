@@ -6,10 +6,8 @@ inherit packagegroup bluetooth qtquickcompiler
 
 MACHINE_EXTRA_INSTALL_SDK ??= ""
 
-#    qtdatavis3d-dev
-#    qtvirtualkeyboard-dev
-#    qtlocation-dev
 #    qtdeclarative-render2d-dev
+#    ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtwebengine-dev', '', d)} 
 RDEPENDS_${PN} += " \
     packagegroup-core-standalone-sdk-target \
     base-files \
@@ -42,13 +40,16 @@ RDEPENDS_${PN} += " \
     qtbase-staticdev \
     qtcanvas3d-dev \
     qtconnectivity-dev \
+    qtdatavis3d-dev \
     qtdeclarative-dev \
     qtdeclarative-staticdev \
     qtdeviceutilities-dev \
     qtgraphicaleffects-dev \
     qtimageformats-dev \
+    qtnetworkauth-dev \
     qtquickcontrols-dev \
     qtquickcontrols2-dev \
+    qtscxml-dev \
     qtsensors-dev \
     qtserialbus-dev \
     qtserialport-dev \
@@ -57,7 +58,6 @@ RDEPENDS_${PN} += " \
     qttools-staticdev \
     qtscript-dev \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-dev', '', d)} \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtwebengine-dev', '', d)} \
     qtwebsockets-dev \
     qtwebchannel-dev \
     qtxmlpatterns-dev \
