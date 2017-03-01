@@ -47,6 +47,8 @@ do_qbsp[depends] += "\
     ${QBSP_IMAGE_TASK}:do_image_complete \
     "
 
+DEPENDS_append = " createrepo-native"
+
 QBSP_VERSION ?= "${PV}${VERSION_AUTO_INCREMENT}"
 QBSP_INSTALLER_COMPONENT ?= "${MACHINE}"
 QBSP_INSTALL_PATH ?= "/Extras/${MACHINE}"
@@ -154,7 +156,11 @@ create_qbsp() {
     prepare_qbsp
 
     # Repository creation
-    repogen -p ${B}/pkg ${B}/repository
+    if [ ${PACKAGE_CLASSES} = "package_deb" ]; then
+        repogen -p ${B}/pkg ${B}/repository
+    elif [ ${PACKAGE_CLASSES} = "package_rpm" ]; then
+        createrepo -o ${B}/repository ${B}/rpm
+    fi
 
     mkdir -p ${DEPLOY_DIR}/qbsp
     rm -f ${DEPLOY_DIR}/qbsp/${PN}-${SDK_MACHINE}-${MACHINE}.qbsp
